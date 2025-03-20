@@ -39,14 +39,16 @@ def linreg_num(x: ArrayLike, y: ArrayLike) -> tuple:
 
     return tuple(pp)
 
-
-if __name__ == "__main__":
+def main():
     args = _cli_defs()
-    data = np.loadtxt(args.input)
+    data = np.loadtxt(args.input, dtype=float, delimiter=",", skiprows=1)
     x_vals = data[:, 0]
     y_vals = data[:, 1]
     slope, intersect = linreg_num(x_vals, y_vals)
 
     print(
-        f"\n The slope of the regression line is {slope} and the intersect is {intersect} \n"
+        f"\n The slope of the regression line is {slope:.4e} and the intersect is {intersect:.4e} \n"
     )
+
+if __name__ == "__main__":
+    main()

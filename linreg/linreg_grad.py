@@ -91,10 +91,12 @@ def linreg_grad(
 
     return (mm, bb)
 
-
-if __name__ == "__main__":
+def main():
     args = _cli_defs()
-    x_vals, y_vals = np.loadtxt(args.input, unpack=True)
+    x_vals, y_vals = np.loadtxt(args.input, dtype=float, delimiter=",", unpack=True, skiprows=1)
     slope, intersec = linreg_grad(x_vals, y_vals, args.step, args.iterations, args.atol)
 
-    print(f"The slope is {slope} and the intercept is {intersec}")
+    print(f"The slope is {slope:.4e} and the intercept is {intersec:.4e}")
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,17 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "linreg"
+version = "1.0"
+requires-python = ">= 3.12"
+dependencies = ["numpy"]
+maintainers = [{name = "Laurent Fraas", email = "laurenz.fraas@icloud.com"}]
+description = "Implementation of gradient descent and numerical solution of the 'normal equation' for linear regression."
+readme = "README.md"
+license = {file = "LICENSE.txt"}
+
+[project.scripts]
+linreg_num = "linreg.linreg_num:main"
+linreg_grad = "linreg.linreg_grad:main"
