@@ -1,9 +1,10 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
-''' This module uses gradient descent to perform linear regression on a dataset'''
+"""This module uses gradient descent to perform linear regression on a dataset"""
 import argparse
 import numpy as np
 from numpy.typing import ArrayLike, NDArray
+
 
 def _cli_defs():
     _description = (
@@ -26,7 +27,7 @@ def _cli_defs():
     return parser.parse_args()
 
 
-def get_deriv_m(xi: NDArray, yi: NDArray, y_pred: NDArray) -> float:
+def _get_deriv_m(xi: NDArray, yi: NDArray, y_pred: NDArray) -> float:
     """Calculates the partial derivative of MSE regrarding m
 
     args:
@@ -40,7 +41,7 @@ def get_deriv_m(xi: NDArray, yi: NDArray, y_pred: NDArray) -> float:
     return np.sum((y_pred - yi) * xi) / nn
 
 
-def get_deriv_b(yi: NDArray, y_pred: NDArray) -> float:
+def _get_deriv_b(yi: NDArray, y_pred: NDArray) -> float:
     """Calculates the partial derivative of MSE regarding b
 
     args:
@@ -53,7 +54,7 @@ def get_deriv_b(yi: NDArray, y_pred: NDArray) -> float:
     return np.sum(y_pred - yi) / nn
 
 
-def ml_linreg(
+def linreg_grad(
     x: ArrayLike,
     y: ArrayLike,
     step: float = 0.01,
@@ -80,8 +81,8 @@ def ml_linreg(
 
     for _ in range(iterations):
         y = mm * xi + bb
-        mm_new = mm - step * get_deriv_m(xi, yi, y)
-        bb_new = bb - step * get_deriv_b(yi, y)
+        mm_new = mm - step * _get_deriv_m(xi, yi, y)
+        bb_new = bb - step * _get_deriv_b(yi, y)
 
         if np.abs(mm - mm_new) < atol and np.abs(bb - bb_new) < atol:
             break
@@ -94,6 +95,6 @@ def ml_linreg(
 if __name__ == "__main__":
     args = _cli_defs()
     x_vals, y_vals = np.loadtxt(args.input, unpack=True)
-    slope, intersec = ml_linreg(x_vals, y_vals, args.step, args.iterations, args.atol)
+    slope, intersec = linreg_grad(x_vals, y_vals, args.step, args.iterations, args.atol)
 
     print(f"The slope is {slope} and the intercept is {intersec}")

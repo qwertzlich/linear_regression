@@ -8,7 +8,7 @@ from numpy.typing import NDArray
 directory = os.path.dirname(__file__)
 sys.path.append( os.path.join(directory, '..'))
 
-from linreg.gradient_decent import ml_linreg
+from linreg.linreg_grad import linreg_grad
 
 @pytest.mark.parametrize('x, y, expected', [
     (np.array([1, 2, 3, 4, 5, 6]), np.array([3, 5, 7, 9, 11, 13]), (2.0, 1.0)),
@@ -18,4 +18,4 @@ from linreg.gradient_decent import ml_linreg
 ])
 def test_ml_linreg(x: NDArray, y: NDArray, expected: tuple):
 
-    assert np.allclose( ml_linreg(x, y), expected, rtol=0.001)
+    assert np.allclose( linreg_grad(x, y), expected, rtol=0.001)
