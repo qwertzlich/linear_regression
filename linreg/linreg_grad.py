@@ -4,6 +4,7 @@
 import argparse
 import numpy as np
 from numpy.typing import ArrayLike, NDArray
+from .utils import _read_data
 
 
 def _cli_defs():
@@ -93,7 +94,7 @@ def linreg_grad(
 
 def main():
     args = _cli_defs()
-    x_vals, y_vals = np.loadtxt(args.input, dtype=float, delimiter=",", unpack=True, skiprows=1)
+    x_vals, y_vals = _read_data(args.input)
     slope, intersec = linreg_grad(x_vals, y_vals, args.step, args.iterations, args.atol)
 
     print(f"The slope is {slope:.4e} and the intercept is {intersec:.4e}")

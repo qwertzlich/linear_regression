@@ -2,8 +2,10 @@
 # -*- coding: utf-8 -*-
 """This module contains linreg method to perform linear regression on a dataset"""
 import argparse
+import os
 import numpy as np
 from numpy.typing import ArrayLike
+from .utils import _read_data
 
 
 def _cli_defs():
@@ -41,9 +43,7 @@ def linreg_num(x: ArrayLike, y: ArrayLike) -> tuple:
 
 def main():
     args = _cli_defs()
-    data = np.loadtxt(args.input, dtype=float, delimiter=",", skiprows=1)
-    x_vals = data[:, 0]
-    y_vals = data[:, 1]
+    x_vals, y_vals = _read_data(args.input)
     slope, intersect = linreg_num(x_vals, y_vals)
 
     print(

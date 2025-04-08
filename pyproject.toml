@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "linreg"
 version = "1.0"
 requires-python = ">= 3.12"
-dependencies = ["numpy"]
+dependencies = ["numpy", "pandas"]
 maintainers = [{name = "Laurent Fraas", email = "laurenz.fraas@icloud.com"}]
 description = "Implementation of gradient descent and numerical solution of the 'normal equation' for linear regression."
 readme = "README.md"

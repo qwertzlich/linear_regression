@@ -41,7 +41,7 @@ This method performs linear regression by utilizing gradient decent. This is an 
 
 ## File format
 
-The file format should include the data as XY-Format seperated with commas (csv).
+The file format should include the data as XY-Format seperated with commas (csv). The first row will always be interpreted as column-names.
 
 ### File Example
 
